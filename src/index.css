@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #6366f1;
+  --color-primary-hover: #4f46e5;
+  --color-secondary: #ec4899;
+
+  --font-sans: "Outfit", sans-serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+}
+
+@layer base {
+  :root {
+    /* --- Light Mode (Day) --- */
+    --color-bg: #f1f5f9;
+    /* Slate 100 - slightly darker than pure white for contrast */
+    --color-text: #1e293b;
+    /* Slate 800 */
+    --color-text-muted: #64748b;
+    /* Slate 500 */
+    --color-text-light: #94a3b8;
+    /* Slate 400 */
+
+    --color-card-bg: rgba(255, 255, 255, 0.8);
+    --color-card-hover: rgba(255, 255, 255, 1);
+    --color-border: rgba(0, 0, 0, 0.08);
+
+    --color-input-bg: rgba(255, 255, 255, 0.8);
+    --color-glass-bg: rgba(255, 255, 255, 0.8);
+    --color-glass-border: rgba(0, 0, 0, 0.05);
+  }
+
+  :root.dark {
+    /* --- Dark Mode (Night) --- */
+    --color-bg: #020617;
+    /* Slate 950 */
+    --color-text: #f8fafc;
+    /* Slate 50 */
+    --color-text-muted: #94a3b8;
+    /* Slate 400 */
+    --color-text-light: #cbd5e1;
+    /* Slate 300 */
+
+    --color-card-bg: rgba(255, 255, 255, 0.05);
+    --color-card-hover: rgba(255, 255, 255, 0.1);
+    --color-border: rgba(255, 255, 255, 0.1);
+
+    --color-input-bg: rgba(255, 255, 255, 0.05);
+    --color-glass-bg: rgba(15, 23, 42, 0.7);
+    /* Darker glass for nav */
+    --color-glass-border: rgba(255, 255, 255, 0.1);
+  }
+
+  body {
+    @apply font-sans overflow-x-hidden transition-colors duration-500 ease-in-out;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+}
+
+/* Reusable Theme Classes */
+.bg-theme {
+  background-color: var(--color-bg);
+  transition: background-color 0.5s ease;
+}
+
+.text-theme {
+  color: var(--color-text);
+}
+
+.glass-card {
+  background-color: var(--color-card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background-color: var(--color-card-hover);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+}
